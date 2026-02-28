@@ -1,0 +1,274 @@
+/* ========================
+   RESET & BASE
+   ======================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Deep warm amber — works as accent on all light card backgrounds */
+  --accent: #8a5010;
+  --tab-h:  56px;
+}
+
+body {
+  background: #f0ead8;
+  font-family: Georgia, serif;
+  color: #2a1a08;
+  overflow: hidden;
+  height: 100svh;
+}
+
+/* ========================
+   STACK
+   ======================== */
+.stack {
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========================
+   CARD BASE
+   ======================== */
+.card {
+  position: relative;
+  flex-shrink: 0;
+  height: var(--tab-h);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:not(:first-child) {
+  border-radius: 20px 20px 0 0;
+}
+
+.card.card-open {
+  cursor: default;
+}
+
+/* ========================
+   CARD FARBEN — each scene from the moodboard
+   ======================== */
+
+/* 01 — warm linen / film grain */
+.card-hero    { background: #f0ead8; z-index: 1; }
+
+/* 02 — dusty teal (ocean / shimmering water) */
+.card-work    { background: #9ecac6; z-index: 2; border-top: 2px solid #78aeaa; }
+
+/* 03 — golden amber (sunset beach) */
+.card-about   { background: #f2c858; z-index: 3; border-top: 2px solid #d4a830; }
+
+/* 04 — sage green ("sitting quietly, doing nothing") */
+.card-hobbys  { background: #b4d4a0; z-index: 4; border-top: 2px solid #88b870; }
+
+/* 05 — warm peach (barefoot on sand) */
+.card-contact { background: #e8bfa0; z-index: 5; border-top: 2px solid #c89870; }
+
+/* ========================
+   CARD TAB (always-visible header)
+   ======================== */
+.card-tab {
+  height: var(--tab-h);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 28px;
+  position: relative;
+}
+
+/* Left accent bar */
+.card-tab::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 16px;
+  background: var(--accent);
+  border-radius: 1px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card.card-open .card-tab::before {
+  opacity: 1;
+}
+
+/* Decorative — dim */
+.tab-num {
+  font-family: monospace;
+  font-size: 9px;
+  color: rgba(42, 26, 8, 0.35);
+  letter-spacing: 0.1em;
+}
+
+/* #5a4030 on all card light backgrounds ≥ 5:1 ✓ AA */
+.tab-title {
+  font-family: monospace;
+  font-size: 10px;
+  color: #5a4030;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transition: color 0.3s;
+}
+
+/* #1a0e04 on any light bg ≥ 12:1 ✓ AAA */
+.card.card-open .tab-title {
+  color: #1a0e04;
+}
+
+/* ========================
+   CARD BODY (content area)
+   ======================== */
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* Scrollbar styled to match warm aesthetic */
+.card-body::-webkit-scrollbar {
+  width: 3px;
+}
+
+.card-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.card-body::-webkit-scrollbar-thumb {
+  background: rgba(42, 26, 8, 0.2);
+  border-radius: 2px;
+}
+
+.card-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(42, 26, 8, 0.4);
+}
+
+/* ========================
+   CARD LAYOUT (inside card-body)
+   ======================== */
+.card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.card-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ========================
+   HERO
+   ======================== */
+/* #8a5010 on #f0ead8 ≈ 5.8:1 ✓ AA */
+.eyebrow {
+  font-family: monospace;
+  font-size: 9px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+}
+
+/* Ghost / decorative */
+.name {
+  font-size: clamp(56px, 18vw, 80px);
+  line-height: 0.9;
+  color: rgba(42, 26, 8, 0.07);
+  letter-spacing: -0.03em;
+}
+
+/* ========================
+   WORK / ABOUT / HOBBYS / CONTACT
+   ======================== */
+/* Ghost / decorative */
+.card-title {
+  font-size: clamp(36px, 12vw, 52px);
+  color: rgba(42, 26, 8, 0.07);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* Decorative */
+.card-index {
+  font-family: monospace;
+  font-size: 9px;
+  color: rgba(42, 26, 8, 0.3);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* Decorative placeholder */
+.placeholder {
+  font-family: monospace;
+  font-size: 10px;
+  color: rgba(42, 26, 8, 0.28);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ========================
+   CONTACT
+   ======================== */
+/* Ghost / decorative */
+.contact-big {
+  font-size: clamp(36px, 12vw, 52px);
+  line-height: 1.05;
+  color: rgba(42, 26, 8, 0.08);
+  letter-spacing: -0.02em;
+}
+
+.contact-big em {
+  font-style: normal;
+  color: rgba(138, 80, 16, 0.5);
+}
+
+/* #6a3c08 on #e8bfa0 ≈ 5.6:1 ✓ AA */
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  background: rgba(138, 80, 16, 0.1);
+  border: 1px solid rgba(138, 80, 16, 0.35);
+  border-radius: 10px;
+  font-family: monospace;
+  font-size: 10px;
+  color: #6a3c08;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.cta:hover {
+  background: rgba(138, 80, 16, 0.2);
+}
+
+/* ========================
+   DESKTOP (ab 768px)
+   ======================== */
+@media (min-width: 768px) {
+  .card-body { padding: 36px 48px; }
+}
