@@ -46,6 +46,7 @@ body {
 
 .card:not(:first-child) {
   border-radius: 20px 20px 0 0;
+  margin-top: -20px;
 }
 
 .card.card-open {
@@ -267,8 +268,372 @@ body {
 }
 
 /* ========================
+   WORK / ABOUT / HOBBYS — flex-start statt space-between
+   ======================== */
+.card-work .card-body,
+.card-about .card-body,
+.card-hobbys .card-body {
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+/* ========================
+   HERO ADDITIONS
+   ======================== */
+.hero-mid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.hero-tagline {
+  font-size: clamp(18px, 5vw, 26px);
+  line-height: 1.35;
+  color: rgba(42, 26, 8, 0.72);
+  letter-spacing: -0.01em;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hero-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: monospace;
+  font-size: 9px;
+  color: rgba(42, 26, 8, 0.5);
+  letter-spacing: 0.08em;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #5a8c3a;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(90, 140, 58, 0.25);
+}
+
+.hero-scroll {
+  font-family: monospace;
+  font-size: 9px;
+  color: rgba(42, 26, 8, 0.28);
+  letter-spacing: 0.12em;
+}
+
+/* ========================
+   BUTTONS
+   ======================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 10px;
+  font-family: monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #f0ead8;
+}
+
+.btn-primary:hover {
+  background: #6e3f0c;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba(138, 80, 16, 0.4);
+}
+
+.btn-ghost:hover {
+  background: rgba(138, 80, 16, 0.08);
+}
+
+/* ========================
+   WORK CARDS
+   ======================== */
+.work-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.work-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.work-card:hover {
+  background: rgba(255, 255, 255, 0.52);
+}
+
+.work-img {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.work-img--1 { background: linear-gradient(135deg, #c5a882, #7a3d08); }
+.work-img--2 { background: linear-gradient(135deg, #78aeaa, #2e6060); }
+.work-img--3 { background: linear-gradient(135deg, #b4d8a8, #3e6e28); }
+.work-img--4 { background: linear-gradient(135deg, #e8c898, #8a5010); }
+
+.work-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.work-tags {
+  font-family: monospace;
+  font-size: 8px;
+  color: rgba(42, 26, 8, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.work-name {
+  font-size: 15px;
+  font-weight: normal;
+  color: rgba(42, 26, 8, 0.85);
+  letter-spacing: -0.01em;
+}
+
+.work-arrow {
+  font-size: 16px;
+  color: rgba(42, 26, 8, 0.28);
+  flex-shrink: 0;
+}
+
+/* ========================
+   ABOUT
+   ======================== */
+.about-profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.about-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(42, 26, 8, 0.1);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-initials {
+  font-family: monospace;
+  font-size: 13px;
+  color: rgba(42, 26, 8, 0.45);
+  letter-spacing: 0.05em;
+}
+
+.about-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.about-name {
+  font-size: 16px;
+  font-weight: normal;
+  color: rgba(42, 26, 8, 0.85);
+  letter-spacing: -0.01em;
+}
+
+.about-role {
+  font-family: monospace;
+  font-size: 9px;
+  color: rgba(42, 26, 8, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.about-bio {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(42, 26, 8, 0.68);
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px;
+  background: rgba(42, 26, 8, 0.08);
+  border-radius: 100px;
+  font-family: monospace;
+  font-size: 9px;
+  color: rgba(42, 26, 8, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 8px;
+  background: rgba(42, 26, 8, 0.05);
+  border-radius: 12px;
+}
+
+.stat-num {
+  font-size: 22px;
+  color: rgba(42, 26, 8, 0.7);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: monospace;
+  font-size: 8px;
+  color: rgba(42, 26, 8, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+/* ========================
+   HOBBYS
+   ======================== */
+.hobby-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.hobby-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 16px 8px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 14px;
+}
+
+.hobby-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.hobby-label {
+  font-family: monospace;
+  font-size: 8px;
+  color: rgba(42, 26, 8, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+.hobby-quote {
+  font-size: 11px;
+  font-style: italic;
+  line-height: 1.6;
+  color: rgba(42, 26, 8, 0.38);
+  text-align: center;
+  padding: 0 8px;
+}
+
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.photo-item {
+  aspect-ratio: 1;
+  border-radius: 10px;
+}
+
+.photo-item--1 { background: linear-gradient(160deg, #c8b090, #906838); }
+.photo-item--2 { background: linear-gradient(160deg, #90b8c8, #3868a0); }
+.photo-item--3 { background: linear-gradient(160deg, #98c888, #407840); }
+.photo-item--4 { background: linear-gradient(160deg, #d8b8a0, #a86848); }
+
+/* ========================
+   CONTACT ADDITIONS
+   ======================== */
+.social-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 14px;
+  background: rgba(138, 80, 16, 0.07);
+  border: 1px solid rgba(138, 80, 16, 0.22);
+  border-radius: 100px;
+  font-family: monospace;
+  font-size: 9px;
+  color: rgba(42, 26, 8, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.social-link:hover {
+  background: rgba(138, 80, 16, 0.15);
+}
+
+/* ========================
    DESKTOP (ab 768px)
    ======================== */
 @media (min-width: 768px) {
   .card-body { padding: 36px 48px; }
+  .hobby-grid { grid-template-columns: repeat(6, 1fr); }
+  .about-stats { gap: 12px; }
 }
