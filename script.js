@@ -1,10 +1,8 @@
-// mynu.visuals — script.js
-
 const cards = document.querySelectorAll('.card');
+const TAB_H = 56;
+const OVERLAP = 20;
 
-const TAB_H = 56;  // must match --tab-h
-const OVERLAP = 20; // must match border-radius of non-first cards
-
+// Open a card to full height
 function openCard(index) {
   const openH = window.innerHeight - TAB_H * cards.length + (cards.length - 1) * OVERLAP;
 
@@ -15,28 +13,28 @@ function openCard(index) {
   });
 }
 
-// Click on a collapsed card to open it
+// Click to open card
 cards.forEach((card, i) => {
-  card.addEventListener('click', () => {
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('a')) return;
     if (!card.classList.contains('card-open')) {
       openCard(i);
     }
   });
 });
 
-// Recalculate on resize
+// Update on resize
 window.addEventListener('resize', () => {
   const current = [...cards].findIndex(c => c.classList.contains('card-open'));
   if (current >= 0) openCard(current);
 }, { passive: true });
 
-// Scroll to navigate between cards
+// Scroll to navigate
 let scrollLocked = false;
 window.addEventListener('wheel', (e) => {
   const current = [...cards].findIndex(c => c.classList.contains('card-open'));
   const openBody = cards[current]?.querySelector('.card-body');
 
-  // Allow normal scroll if card body isn't scrolled to its limit yet
   if (openBody) {
     const atTop = openBody.scrollTop === 0;
     const atBottom = openBody.scrollTop + openBody.clientHeight >= openBody.scrollHeight - 1;
@@ -52,7 +50,7 @@ window.addEventListener('wheel', (e) => {
   }
 }, { passive: true });
 
-// Buttons with data-goto navigate to a specific card
+// Handle buttons
 document.querySelectorAll('[data-goto]').forEach(el => {
   el.addEventListener('click', e => {
     e.stopPropagation();
@@ -60,5 +58,5 @@ document.querySelectorAll('[data-goto]').forEach(el => {
   });
 });
 
-// Init — open hero
+// Start at hero
 openCard(0);
