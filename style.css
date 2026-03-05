@@ -7,15 +7,13 @@
 
 :root {
   --accent: #8a5010;
-  --bg: #f0ead8;
-  --text: #2a1a08;
   --tab-h: 56px;
 }
 
 body {
-  background: var(--bg);
+  background: #f0ead8;
   font-family: Georgia, serif;
-  color: var(--text);
+  color: #2a1a08;
   overflow: hidden;
   height: 100svh;
 }
@@ -50,7 +48,7 @@ body {
 
 /* ===== CARDS ===== */
 
-.card-hero    { background: var(--bg); z-index: 1; }
+.card-hero    { background: #f0ead8; z-index: 1; }
 .card-work    { background: #9ecac6; z-index: 2; border-top: 2px solid #78aeaa; }
 .card-about   { background: #f2c858; z-index: 3; border-top: 2px solid #d4a830; }
 .card-hobbys  { background: #b4d4a0; z-index: 4; border-top: 2px solid #88b870; }
@@ -192,13 +190,12 @@ body {
 }
 
 .cta {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  padding: 0 14px;
-  background: rgba(106, 60, 8, 0.08);
-  border: 1px solid rgba(106, 60, 8, 0.2);
+  height: 48px;
+  background: rgba(138, 80, 16, 0.1);
+  border: 1px solid rgba(138, 80, 16, 0.35);
   border-radius: 10px;
   font-family: monospace;
   font-size: 10px;
@@ -208,7 +205,7 @@ body {
 }
 
 .cta:hover {
-  background: rgba(106, 60, 8, 0.12);
+  background: rgba(138, 80, 16, 0.2);
 }
 
 .card-work .card-body,
@@ -291,7 +288,7 @@ body {
 
 .btn-primary {
   background: var(--accent);
-  color: var(--bg);
+  color: #f0ead8;
 }
 
 .btn-primary:hover {
